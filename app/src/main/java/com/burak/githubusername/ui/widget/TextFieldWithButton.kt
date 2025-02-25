@@ -1,4 +1,4 @@
-package com.burak.githubusername.ui.main
+package com.burak.githubusername.ui.widget
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer

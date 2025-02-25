@@ -1,58 +1,32 @@
 package com.burak.githubusername.ui.main
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.burak.githubusername.R
+import com.burak.githubusername.ui.widget.MyTopAppBar
+import com.burak.githubusername.ui.widget.TextFieldWithButton
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
-fun MyTopAppBar(
-    title: String,
-    showBackButton: Boolean = false,
-    showActionButton: Boolean = false,
-    onBackButtonClicked: () -> Unit,
-    onActionButtonClicked: () -> Unit
-) {
-    TopAppBar(title = { Text(title) },
-        navigationIcon = {
-            if (showBackButton) {
-                Image(
-                    painterResource(R.drawable.ic_back),
-                    contentDescription = "Back Button",
-                    modifier = Modifier.size(20.dp),
-                    colorFilter = ColorFilter.tint(Color.Black)
-                )
+fun MainScreen(state: MainScreenState, submitButtonClicked: () -> Unit, onValueChanged: (String) -> Unit) {
+    Column(modifier = Modifier.padding(horizontal = 8.dp)) {
+        MyTopAppBar("Home")
+        TextFieldWithButton(submitButtonClicked = submitButtonClicked, onValueChanged = onValueChanged)
+        LazyColumn {
+            item {
+                Text("Name")
             }
-        },
-        actions = {
-            if (showActionButton) {
-                Image(
-                    painterResource(R.drawable.ic_star_selected),
-                    contentDescription = "Start Button"
-                )
+            items(state.repoList) { repo ->
+
+
             }
 
-        })
+        }
+    }
 
-}
-
-@Preview
-@Composable
-fun MyTopAppBarPreview() {
-    MyTopAppBar(
-        title = "My App",
-        showBackButton = true,
-        showActionButton = true,
-        onBackButtonClicked = {},
-        onActionButtonClicked = {})
 }
