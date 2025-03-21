@@ -3,8 +3,9 @@ package com.burak.githubusername.ui.main
 
 import androidx.compose.runtime.Composable
 import com.burak.githubusername.core.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity :
     BaseActivity<MainScreenState, MainScreenEvent, MainViewModel>(MainViewModel::class.java) {
 
@@ -13,7 +14,6 @@ class MainActivity :
     override fun ScreenContent(state: MainScreenState) {
         MainScreen(
             state = state,
-            submitButtonClicked = { viewModel.submitButtonClicked() },
-            onValueChanged = {})
+            submitButtonClicked = { viewModel.submitButtonClicked(it) })
     }
 }

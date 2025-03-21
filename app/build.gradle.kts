@@ -53,13 +53,18 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    //Retrofit
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.gson)
-
     //Hilt
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
+
+    // Ktor
+    implementation(libs.ktor.logging)
+    implementation("io.ktor:ktor-client-okhttp:3.1.0")
+
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+    //gson
+    implementation(libs.gson)
 
     implementation(libs.androidx.lifecycle.runtime.compose.android)
 

@@ -1,5 +1,6 @@
 package com.burak.githubusername.core
 
-abstract class BaseState(isLoading: Boolean = false)
+
+open class BaseState(val isLoading: Boolean = false)
 
 abstract class NativeAction

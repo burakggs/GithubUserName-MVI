@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
@@ -20,22 +21,28 @@ import androidx.compose.ui.unit.dp
 
 
 @Composable
-fun TextFieldWithButton(submitButtonClicked: () -> Unit, onValueChanged: (String) -> Unit) {
+fun TextFieldWithButton(
+    submitButtonClicked: (String) -> Unit,
+) {
 
-    var value by remember { mutableStateOf("") }
+    var searchQuery by remember {
+        mutableStateOf("")
+    }
 
-    Row {
-        TextField(value = value, onValueChange = {
-            value = it
-            onValueChanged(it)
-        })
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        TextField(value = searchQuery, onValueChange = {
+            searchQuery = it
+        }, modifier = Modifier.weight(0.6f))
         Spacer(modifier = Modifier.size(8.dp))
         Button(
-            onClick = { submitButtonClicked() }, colors = ButtonColors(
+            onClick = { submitButtonClicked(searchQuery) },
+            modifier = Modifier.weight(0.4f),
+            colors = ButtonColors(
                 containerColor = Color.Black, contentColor = Color.White,
                 disabledContainerColor = Color.Black,
                 disabledContentColor = Color.White
-            ), shape = RectangleShape
+            ),
+            shape = RectangleShape
         ) {
             Text("Submit")
         }
@@ -45,5 +52,5 @@ fun TextFieldWithButton(submitButtonClicked: () -> Unit, onValueChanged: (String
 @Preview
 @Composable
 fun TextFieldWithButtonPreview() {
-    TextFieldWithButton(submitButtonClicked = {}, onValueChanged = {})
+    TextFieldWithButton(submitButtonClicked = {})
 }
