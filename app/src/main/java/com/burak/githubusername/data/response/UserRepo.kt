@@ -3,9 +3,10 @@ package com.burak.githubusername.data.response
 import com.google.gson.annotations.SerializedName
 
 
-data class RepoUIObject(val repoName: String?, val favorite: Boolean?)
+data class RepoUIObject(val id: String?, val repoName: String?, val favorite: Boolean?)
 
 data class UserRepo(
+    val id: String?,
     val name: String?,
     @SerializedName("stargazers_count") val starCount: Int?,
     @SerializedName("open_issues_count") val openIssuesCount: Int?,

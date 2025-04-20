@@ -26,7 +26,7 @@ class MainViewModel @Inject constructor(val repository: UserRepository) :
             val result = repository.getUserRepoList(userName)
             hideLoading()
             val repoList = result.map { userRepo ->
-                RepoUIObject(userRepo.name, false)
+                RepoUIObject(userRepo.id, userRepo.name, false)
 
             }
             _state.value = state.value.copy(repoList = repoList)
